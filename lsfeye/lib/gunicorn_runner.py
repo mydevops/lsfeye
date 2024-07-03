@@ -39,6 +39,3 @@ class GunicornApplication(BaseApplication):
 
     def load(self) -> str:
         return import_app(self.app)
-
-    def on_starting(self) -> None:
-        print("gunicorn starting...")

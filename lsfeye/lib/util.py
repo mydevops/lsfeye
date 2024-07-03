@@ -1,4 +1,5 @@
 import socket
+import subprocess
 import time
 from typing import Any
 from typing import Dict
@@ -34,3 +35,23 @@ def scheduler_lock() -> bool:
     else:
         time.sleep(1)
         return False
+
+
+def execute_shell_command(command: str) -> str:
+    try:
+        result = subprocess.run(
+            command,
+            shell=True,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+        )
+
+        if result.returncode == 0:
+            return result.stdout.strip()
+        else:
+            raise Exception(f"Error: {result.stderr.strip()}")
+
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Error executing command: {e.stderr.strip()}")

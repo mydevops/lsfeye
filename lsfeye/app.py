@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 
 from lsfeye.api.router import api_router
-
-# from lsfeye.db import base as db
 from lsfeye.lib import config
 from lsfeye.lib import event
 from lsfeye.lib import extension
@@ -14,9 +12,6 @@ def make_app() -> FastAPI:
 
     # 初始化日志等配置
     extension.init()
-
-    # 初始化数据库表引入
-    # db.init()
 
     app = FastAPI(**config.app)
 

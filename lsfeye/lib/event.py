@@ -32,7 +32,7 @@ def _register_startup_event(
             async with sessionmanager.engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
 
-            plugin.do()
+            await plugin.do()
 
         app.middleware_stack = app.build_middleware_stack()
 

@@ -22,7 +22,6 @@ def init() -> None:
     for table in os.listdir(os.path.dirname(__file__)):
         if table.endswith(".py") and table not in ["__init__.py", "base.py"]:
             table_name = table.split(".py")[0]
-            print("table_name", table_name, f"lsfeye.db.{table_name}")
             importlib.import_module(f"lsfeye.db.{table_name}")
 
 

@@ -7,7 +7,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from lsfeye.lib.config import settings
 
 
-def do() -> None:
+async def do() -> None:
     scheduler = AsyncIOScheduler()
     for filename in os.listdir(os.path.dirname(__file__)):
         if filename.endswith(".py") and filename != "__init__.py":
