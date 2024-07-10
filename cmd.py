@@ -5,18 +5,18 @@ from typing import Any
 import click
 import psutil
 
-from lsfeye.lib import const
-from lsfeye.lib.gunicorn_runner import GunicornApplication
+from src.lib import const
+from src.lib.gunicorn_runner import GunicornApplication
 
 
 VERSION_INFO = (0, 0, 1)
-DEFAULT_CONFIG_PATH = "/etc/lsfeye.conf"
+DEFAULT_CONFIG_PATH = "/etc/src.conf"
 LAST_CONFIG_PATH_FILE = "/var/run/lsfeye/last_config_path"
 PID_FILE = "/var/run/lsfeye/service.pid"
 
 
 def run_gunicorn() -> None:
-    from lsfeye.lib.config import settings
+    from src.lib.config import settings
 
     app = GunicornApplication(
         app=const.MAIN_APP_PATH,
@@ -35,29 +35,29 @@ def run_gunicorn() -> None:
     "-c",
     "--config",
     type=click.Path(exists=True),
-    help="set configuration file (default: /etc/lsfeye.conf)",
+    help="set configuration file (default: /etc/src.conf)",
 )
 @click.option(
     "-s",
     "--signal",
     type=click.Choice(["reload", "stop"]),
-    help="send signal to a lsfeye process: stop, reload",
+    help="send signal to a src process: stop, reload",
 )
 @click.option(
-    "-t", "--status", is_flag=True, help="show status of the lsfeye service"
+    "-t", "--status", is_flag=True, help="show status of the src service"
 )
 @click.pass_context
 def cli(
     ctx: Any, version: str, config: str, signal: str, status: bool
 ) -> None:
-    """manage the lsfeye service"""
+    """manage the src service"""
 
     config = config or get_last_config_path() or DEFAULT_CONFIG_PATH
     os.environ[const.CONFIG_FILE_PATH_ENVIRONMENT_VARIABLE_NAME] = config
 
     if version:
         click.echo(
-            f'lsfeye version: lsfeye/{".".join([str(v) for v in VERSION_INFO])}'
+            f'src version: src/{".".join([str(v) for v in VERSION_INFO])}'
         )
         return
 
@@ -204,13 +204,13 @@ def show_service_status(pid_file: str) -> None:
             try:
                 pid = int(f.read().strip())
                 if psutil.pid_exists(pid):
-                    click.echo(f"lsfeye service is running (PID: {pid})")
+                    click.echo(f"src service is running (PID: {pid})")
                 else:
-                    click.echo("lsfeye service is not running")
+                    click.echo("src service is not running")
             except ValueError:
                 click.echo("invalid PID file content")
     else:
-        click.echo("lsfeye service is not running")
+        click.echo("src service is not running")
 
 
 if __name__ == "__main__":

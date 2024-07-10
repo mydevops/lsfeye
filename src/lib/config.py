@@ -5,7 +5,8 @@ from typing import Any
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel
 
-from lsfeye.lib import const
+from src.lib import const
+from src.lib import enum
 
 
 class Basic(BaseModel):
@@ -37,12 +38,20 @@ class IntervalTrigger(BaseModel):
     bqueues: int
 
 
+class Alarm(BaseModel):
+    open: bool
+    notification_type: enum.AlarmNotificationType
+    webhook: str
+    secret: str
+
+
 class App(BaseModel):
     basic: Basic
     loguru: Loguru
     mysql: MySQL
     scheduler_lock: SchedulerLock
     interval_trigger: IntervalTrigger
+    alarm: Alarm
 
 
 def read_config(file_path: str) -> App:
@@ -67,6 +76,7 @@ def read_config(file_path: str) -> App:
         ),
         scheduler_lock=SchedulerLock(**config["SCHEDULERLOCK"]),
         interval_trigger=IntervalTrigger(**config["INTERVALTRIGGER"]),
+        alarm=Alarm(**config["ALARM"]),
     )
 
 

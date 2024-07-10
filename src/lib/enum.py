@@ -15,3 +15,8 @@ class ApiVersion(Enum):
 class HTTPStatusCode(Enum):
     SUCCESS = 0
     FAILURE = -1
+
+
+@unique
+class AlarmNotificationType(str, Enum):
+    DINGDING = "dingding"

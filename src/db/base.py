@@ -15,7 +15,7 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.schema import CreateTable
 
-from lsfeye.lib.config import settings
+from src.lib.config import settings
 
 
 def init() -> None:

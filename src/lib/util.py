@@ -4,9 +4,9 @@ import time
 from typing import Any
 from typing import Dict
 
-from lsfeye.lib import const
-from lsfeye.lib import enum
-from lsfeye.lib.config import settings
+from src.lib import const
+from src.lib import enum
+from src.lib.config import settings
 
 
 def make_response_ok(resp: Dict[str, Any] | None = None) -> dict[str, Any]:

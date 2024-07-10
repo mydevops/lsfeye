@@ -11,8 +11,9 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.base import RequestResponseEndpoint
 from starlette.responses import Response
 
-from lsfeye.lib import exceptions
-from lsfeye.lib import util
+from src.lib import exceptions
+from src.lib import extension
+from src.lib import util
 
 
 class ResponseTimeMiddleware(BaseHTTPMiddleware):
@@ -42,6 +43,7 @@ class CatchExceptionsMiddleware(BaseHTTPMiddleware):
         except Exception as e:
             if not isinstance(e, exceptions.IgnoreException):
                 logger.exception(e)
+                await extension.alarm(str(e))
             return ORJSONResponse(util.make_response_not_ok(str(e)))
 
 

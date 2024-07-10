@@ -4,14 +4,14 @@ import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
-from lsfeye.lib.config import settings
+from src.lib.config import settings
 
 
 async def do() -> None:
     scheduler = AsyncIOScheduler()
-    for filename in os.listdir(os.path.dirname(__file__)):
-        if filename.endswith(".py") and filename != "__init__.py":
-            plugin_name = filename[:-3]
+    for filename in os.scandir(os.path.dirname(__file__)):
+        if filename.name.endswith(".py") and filename != "__init__.py":
+            plugin_name = filename.name[:-3]
             module = importlib.import_module(
                 f"lsfeye.lib.plugin.{plugin_name}"
             )

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from lsfeye.api.web.router import router as web_router_api_v1
-from lsfeye.lib.enum import ApiVersion
+from src.api.web.router import router as web_router_api_v1
+from src.lib.enum import ApiVersion
 
 
 api_router = APIRouter()

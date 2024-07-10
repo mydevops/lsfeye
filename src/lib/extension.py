@@ -1,10 +1,14 @@
 import logging
 import os
+from functools import wraps
+from typing import Any
+from typing import Callable
 from typing import Union
 
 from loguru import logger
 
-from lsfeye.lib.config import settings
+from src.lib import enum
+from src.lib.config import settings
 
 
 class InterceptHandler(logging.Handler):
@@ -53,6 +57,29 @@ def _configure_logging() -> None:
         level=settings.loguru.level.upper(),
         format=settings.loguru.format,
     )
+
+
+async def alarm(content: str) -> None:
+    if settings.alarm.open:
+        if (
+            settings.alarm.notification_type
+            == enum.AlarmNotificationType.DINGDING
+        ):
+            from src.lib.alarm import dingding
+
+            await dingding.send(settings, content)
+
+
+def handle_exceptions(task_function: Callable[[], Any]) -> Any:
+    @wraps(task_function)
+    async def wrapper(*args: Any, **kwargs: Any) -> Any:
+        try:
+            return await task_function(*args, **kwargs)
+        except Exception as e:
+            logger.exception(e)
+            await alarm(str(e))
+
+    return wrapper
 
 
 def init() -> None:

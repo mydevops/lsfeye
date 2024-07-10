@@ -4,9 +4,10 @@ from sqlalchemy import insert
 from sqlalchemy import select
 from sqlalchemy import update
 
-from lsfeye.db.base import sessionmanager
-from lsfeye.db.bqueues import BQueuesModel
-from lsfeye.lib import util
+from src.db.base import sessionmanager
+from src.db.bqueues import BQueuesModel
+from src.lib import extension
+from src.lib import util
 
 
 CMD = (
@@ -15,6 +16,7 @@ CMD = (
 )
 
 
+@extension.handle_exceptions
 async def do() -> None:
     async with sessionmanager.session() as session:
         data = json.loads(util.execute_shell_command(CMD))

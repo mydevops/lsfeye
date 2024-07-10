@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
-from lsfeye.api.router import api_router
-from lsfeye.lib import config
-from lsfeye.lib import event
-from lsfeye.lib import extension
-from lsfeye.lib import middleware
+from src.api.router import api_router
+from src.lib import config
+from src.lib import event
+from src.lib import extension
+from src.lib import middleware
 
 
 def make_app() -> FastAPI:

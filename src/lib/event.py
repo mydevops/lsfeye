@@ -4,11 +4,11 @@ from typing import Callable
 from fastapi import FastAPI
 from loguru import logger
 
-from lsfeye.db import base as db
-from lsfeye.db.base import Base
-from lsfeye.db.base import sessionmanager
-from lsfeye.lib import plugin
-from lsfeye.lib import util
+from src.db import base as db
+from src.db.base import Base
+from src.db.base import sessionmanager
+from src.lib import plugin
+from src.lib import util
 
 
 def _register_startup_event(

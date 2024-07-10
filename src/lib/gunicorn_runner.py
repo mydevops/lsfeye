@@ -26,7 +26,7 @@ class GunicornApplication(BaseApplication):
         self.options = {
             "bind": f"{host}:{port}",
             "workers": workers,
-            "worker_class": "lsfeye.lib.gunicorn_runner.UvicornWorker",
+            "worker_class": "src.lib.gunicorn_runner.UvicornWorker",
             **kwargs,
         }
         self.app = app

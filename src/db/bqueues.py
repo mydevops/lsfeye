@@ -3,10 +3,10 @@ from sqlalchemy import String
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
-from lsfeye.db.base import Base
-from lsfeye.db.base import HasCreateTimeMixin
-from lsfeye.db.base import HasIdMixin
-from lsfeye.db.base import HasLastUpdateTimeMixin
+from src.db.base import Base
+from src.db.base import HasCreateTimeMixin
+from src.db.base import HasIdMixin
+from src.db.base import HasLastUpdateTimeMixin
 
 
 class BQueuesModel(
