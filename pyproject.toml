@@ -1,33 +1,39 @@
-[tool.poetry]
+[project]
 name = "lsfeye"
 version = "0.1.0"
-description = ""
-authors = ["D.M.M. <mydevops@163.com>"]
+description = "Monitoring system for IBM LSF"
+authors = [
+    {name = "D.M.M.", email = "mydevops@163.com"},
+]
+dependencies = [
+    "uvicorn==0.30.1",
+    "fastapi==0.111.0",
+    "aiomysql==0.2.0",
+    "gunicorn==22.0.0",
+    "uvicorn-worker==0.2.0",
+    "loguru==0.7.2",
+    "sqlalchemy==2.0.30",
+    "apscheduler==3.10.4",
+    "cryptography==42.0.8",
+    "click==8.1.7",
+    "psutil==6.0.0",
+    "nuitka==2.3.4",
+]
+requires-python = ">=3.11"
 readme = "README.md"
+license = {text = "MIT"}
 
-[tool.poetry.dependencies]
-python = "3.11.1"
-uvicorn = "0.30.1"
-fastapi = "0.111.0"
-aiomysql = "0.2.0"
-gunicorn = "22.0.0"
-uvicorn-worker = "0.2.0"
-loguru = "0.7.2"
-sqlalchemy = "2.0.30"
-apscheduler = "3.10.4"
-cryptography = "42.0.8"
-click = "8.1.7"
-psutil = "6.0.0"
-
-
-[tool.poetry.group.dev.dependencies]
-pre-commit = "3.7.1"
-nuitka = "2.3.4"
-
+[project.optional-dependencies]
+dev = [
+    "pre-commit==3.7.1",
+]
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
+
+[tool.pdm]
+distribution = true
 
 [tool.ruff]
 include = ["src/**/*.py"]

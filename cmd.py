@@ -57,7 +57,7 @@ def cli(
 
     if version:
         click.echo(
-            f'src version: src/{".".join([str(v) for v in VERSION_INFO])}'
+            f'lsfeye version: lsfeye/{".".join([str(v) for v in VERSION_INFO])}'
         )
         return
 

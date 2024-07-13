@@ -18,6 +18,8 @@
 ## 安装
 下载完成后进入`lsfeye`目录执行。
 ```shell
+curl -sSL https://pdm-project.org/install-pdm.py | python3 -
+pdm install
 make build
 ```
 执行完成后会在`.build_tmp`目录下生成`lsfeye`二进制可执行文件。
