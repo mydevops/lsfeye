@@ -1,15 +1,16 @@
+from __future__ import annotations
+
 import socket
 import subprocess
 import time
 from typing import Any
-from typing import Dict
 
 from src.lib import const
 from src.lib import enum
 from src.lib.config import settings
 
 
-def make_response_ok(resp: Dict[str, Any] | None = None) -> dict[str, Any]:
+def make_response_ok(resp: dict[str, Any] | None = None) -> dict[str, Any]:
     return {
         "retcode": enum.HTTPStatusCode.SUCCESS.value,
         "msg": const.MAKE_RESPONSE_OK_MSG,
