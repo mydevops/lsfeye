@@ -1,8 +1,7 @@
-from __future__ import annotations
-
 import multiprocessing
 import os
 from typing import Any
+from typing import Optional
 
 import click
 import psutil
@@ -75,7 +74,7 @@ def cli(
         start_service(PID_FILE, config)
 
 
-def get_last_config_path() -> str | None:
+def get_last_config_path() -> Optional[str]:
     """get the last used configuration file path"""
     if os.path.exists(LAST_CONFIG_PATH_FILE):
         with open(LAST_CONFIG_PATH_FILE, "r") as f:

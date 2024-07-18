@@ -1,4 +1,4 @@
-from __future__ import annotations
+from typing import Dict
 
 from fastapi import APIRouter
 
@@ -15,5 +15,5 @@ api_router.include_router(
 
 
 @api_router.get("/healthcheck", include_in_schema=False)
-async def healthcheck() -> dict[str, str]:
+async def healthcheck() -> Dict[str, str]:
     return {"status": "ok"}

@@ -31,6 +31,10 @@ dev = [
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[[tool.pdm.source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
 
 [tool.pdm]
 distribution = true

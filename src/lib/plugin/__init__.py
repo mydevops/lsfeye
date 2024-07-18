@@ -10,11 +10,9 @@ from src.lib.config import settings
 async def do() -> None:
     scheduler = AsyncIOScheduler()
     for filename in os.scandir(os.path.dirname(__file__)):
-        if filename.name.endswith(".py") and filename != "__init__.py":
+        if filename.name.endswith(".py") and filename.name != "__init__.py":
             plugin_name = filename.name[:-3]
-            module = importlib.import_module(
-                f"lsfeye.lib.plugin.{plugin_name}"
-            )
+            module = importlib.import_module(f"src.lib.plugin.{plugin_name}")
 
             scheduler.add_job(
                 getattr(module, "do"),

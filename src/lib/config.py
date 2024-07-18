@@ -1,8 +1,7 @@
-from __future__ import annotations
-
 import configparser
 import os
 from typing import Any
+from typing import Dict
 
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel
@@ -85,7 +84,7 @@ def read_config(file_path: str) -> App:
 settings = read_config(
     os.getenv(const.CONFIG_FILE_PATH_ENVIRONMENT_VARIABLE_NAME, "")
 )
-app: dict[str, Any] = {
+app: Dict[str, Any] = {
     "title": f"{settings.basic.app_name} API",
     "default_response_class": ORJSONResponse,
 }

@@ -1,6 +1,5 @@
-from __future__ import annotations
-
 from typing import Any
+from typing import Dict
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio.session import AsyncSession
@@ -8,7 +7,7 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from src.api.web import schema
 
 
-async def query(session: AsyncSession, body: schema.Query) -> dict[str, Any]:
+async def query(session: AsyncSession, body: schema.Query) -> Dict[str, Any]:
     result = await session.execute(text(body.sql))
 
     rows = result.fetchall()

@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.2"
-content_hash = "sha256:fcd538a436865da366ff8447581789a23c701633d1c87b72300d658c43cae299"
+content_hash = "sha256:d93a75896a66ffafe2b6a6d0c43dd0764b9e4a49f26021da40736ff31162260a"
 
 [[package]]
 name = "aiomysql"

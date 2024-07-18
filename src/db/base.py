@@ -1,11 +1,11 @@
-from __future__ import annotations
-
 import contextlib
 import importlib
 import os
 from datetime import datetime
 from typing import Any
 from typing import AsyncIterator
+from typing import Dict
+from typing import Optional
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncConnection
@@ -24,7 +24,7 @@ def init() -> None:
     for table in os.listdir(os.path.dirname(__file__)):
         if table.endswith(".py") and table not in ["__init__.py", "base.py"]:
             table_name = table.split(".py")[0]
-            importlib.import_module(f"lsfeye.db.{table_name}")
+            importlib.import_module(f"src.db.{table_name}")
 
 
 class Base(DeclarativeBase):
@@ -59,7 +59,7 @@ class HasLastUpdateTimeMixin:
 
 
 class DatabaseSessionManager:
-    def __init__(self, host: str, engine_kwargs: dict[str, Any] | None):
+    def __init__(self, host: str, engine_kwargs: Optional[Dict[str, Any]]):
         if engine_kwargs is None:
             engine_kwargs = {}
         self.engine = create_async_engine(host, **engine_kwargs)

@@ -1,6 +1,5 @@
-from __future__ import annotations
-
 from typing import Any
+from typing import Dict
 
 from fastapi import APIRouter
 from fastapi import Depends
@@ -23,7 +22,7 @@ async def test(
     request: Request,
     body: schema.Query,
     session: AsyncSession = Depends(get_db_session),
-) -> dict[str, Any]:
+) -> Dict[str, Any]:
     logger.info(f"收到 SQL 查询任务: {body} {request.headers}")
     return common_util.make_response_ok(
         resp=await service.query(session, body)
