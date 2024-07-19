@@ -20,7 +20,6 @@
 ```shell
 curl -sSL https://pdm-project.org/install-pdm.py | python3 -
 pdm install
-make build
 ```
 执行完成后会在`.build_tmp`目录下生成`lsfeye`二进制可执行文件。
 
@@ -71,4 +70,9 @@ port = 8001       # 监听端口
 ```
 [INTERVALTRIGGER]  // unit: Seconds
 bqueues = 10  # 每 10 秒运行一次
+```
+
+## 启动
+```shell
+./scripts/start.sh
 ```

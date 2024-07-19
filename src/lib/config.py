@@ -1,5 +1,4 @@
 import configparser
-import os
 from typing import Any
 from typing import Dict
 
@@ -81,9 +80,7 @@ def read_config(file_path: str) -> App:
     )
 
 
-settings = read_config(
-    os.getenv(const.CONFIG_FILE_PATH_ENVIRONMENT_VARIABLE_NAME, "")
-)
+settings = read_config(const.CONFIG_PATH)
 app: Dict[str, Any] = {
     "title": f"{settings.basic.app_name} API",
     "default_response_class": ORJSONResponse,

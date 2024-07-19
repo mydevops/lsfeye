@@ -17,7 +17,6 @@ dependencies = [
     "cryptography==42.0.8",
     "click==8.1.7",
     "psutil==6.0.0",
-    "nuitka==2.3.4",
 ]
 requires-python = ">=3.8"
 readme = "README.md"
