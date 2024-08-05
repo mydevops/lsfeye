@@ -3,6 +3,7 @@ import os
 from functools import wraps
 from typing import Any
 from typing import Callable
+from typing import Coroutine
 from typing import Union
 
 from loguru import logger
@@ -70,7 +71,9 @@ async def alarm(content: str) -> None:
             await dingding.send(settings, content)
 
 
-def handle_exceptions(task_function: Callable[[], Any]) -> Any:
+def handle_exceptions(
+    task_function: Callable[..., Coroutine[Any, Any, Any]],
+) -> Callable[..., Coroutine[Any, Any, Any]]:
     @wraps(task_function)
     async def wrapper(*args: Any, **kwargs: Any) -> Any:
         try:

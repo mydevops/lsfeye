@@ -36,6 +36,8 @@ class SchedulerLock(BaseModel):
 
 class IntervalTrigger(BaseModel):
     bqueues: int
+    bhosts: int
+    lsload: int
 
 
 class Alarm(BaseModel):
